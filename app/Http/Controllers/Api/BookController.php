@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
+use App\Http\Resources\BookListResource;
 use App\Http\Resources\BookResource;
 use App\Models\Book;
 use App\Services\BookService;
@@ -19,8 +20,8 @@ class BookController extends Controller
 
     public function index()
     {
-        return BookResource::collection(
-            Book::with(['authors', 'genres', 'publisher'])->paginate()
+        return BookListResource::collection(
+            Book::with(['authors', 'publisher'])->paginate()
         );
     }
 
